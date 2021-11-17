@@ -221,12 +221,12 @@
 		clone.textContent = document.querySelector('.pre').removeAttribute("hidden")
 		clone.textContent = document.querySelector('.magazine').outerHTML;
 		document.querySelector('.nature').setAttribute('contenteditable', 'false')
-		window.document.body.removeclassName = 'edit'
+		document.body.removeclassName = 'edit'
 	}
 	function closeCode() {
 		document.getElementById("clone").innerHTML = ""
 		clone.textContent = document.querySelector('.pre').setAttribute('hidden',"true")
-		window.document.body.removeclassName = 'edit'
+		document.body.removeclassName = 'edit'
 	}
 	</script>
 	<pre class="pre" hidden>
