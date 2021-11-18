@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Blog Component Prototype</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	      rel="stylesheet">
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+		body {
+			font-family: 'Noto Sans', sans-serif;
+		}
+		@media only screen and (max-width: 767px) {
+		body {
+		/* The file size of this background image is 93% smaller
+		to improve page load speed on mobile internet connections */
+		background-image: url(coffeeSplash.jpeg);
+		}
+		}
+		.refresh {
+		    background: white;
+		    border-radius: 2px;
+		    padding: 8px 16px;
+			color: #a9a9a9;
+			cursor: pointer;
+			display: inline-flex;
+			margin-right:10px;
+		}
+		.material-icons {
+			margin-left: 10px;
+		}
+		@keyframes slideInFromLeft {
+		0% {
+			transform: translateX(-100%);
+		}
+		100% {
+			transform: translateX(0);
+		}
+		}
+
+		.nature {  
+		/* This section calls the slideInFromLeft animation we defined above */
+		animation: 2s ease-out 0s 1 slideInFromLeft;
+		}
+		.nature {
+			padding: 20px 40px;
+			font-weight: 700;
+			font-size: 120px;
+			/* text-align: center; */
+			color: #ffffff;
+			display: flex;
+			position: absolute;
+			border-radius: 4px;
+			text-transform: capitalize;
+			position: absolute;
+			top: 199px;
+			margin-left: 50px;
+		}
+
+		body.edit .nature {
+			box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+			transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+			text-shadow: 2px 2px 3px #c4c4c4;
+			background-color: #ffffff2b;
+		}
+		.show {
+			visibility: hidden;
+			position: absolute;
+		}
+		body.edit .show {
+			visibility: visible !important;
+		}
+		.show-right, .show-left, .show-bottom, .show-top {
+			background: white;
+			border-radius: 2px;
+			color: #a9a9a9;
+			cursor: pointer;
+			display: flex;
+			text-decoration: none;
+			padding: 7px;
+			text-shadow: none;
+		}
+		.show-right {
+			right: -49px;
+			top: 93px;
+		}
+		.show-left {
+			left: -49px;
+			top: 93px;
+		}
+		.show-bottom {
+			left: 1px;
+			bottom: -39px;
+		}
+		.show-top {
+			right: 1px;
+			top: -39px;
+		}
+		.show:hover {
+			background: cornflowerblue;
+   		    color: white;
+		}
+		.refresh:hover {
+			color: gold;
+		}
+		#clone {
+			border-radius: 3px;
+			font-family: monospace;
+			font-size: inherit;
+			padding: 20px;
+			color: grey;
+			line-height: 29px;
+		}
+		p > code,
+		li > code,
+		dd > code,
+		td > code {
+			background: #ffeff0;
+			word-wrap: break-word;
+			box-decoration-break: clone;
+			padding: .1rem .3rem .2rem;
+			border-radius: .2rem;
+		}
+		.pre {
+			position: absolute;
+			bottom: 0px;height: 200px;
+			background: white;
+			width: 100%;
+			left: 0px;
+			overflow: scroll;
+		}
+		.cancelCode {
+			position: absolute;
+			top:2px;
+			right: 5px;
+		}
+	</style>
+  
+</head>
+<body style="background-size: cover; background-position: center center; background-attachment: fixed; background-image:url('https://source.unsplash.com/3840x2160/?India'); background-repeat:no-repeat;">
+	<section class="fog magazine">
+		<a class="refresh" onclick="location.reload();" style="background:pink; color: white;">
+			Change background
+			<span class="material-icons">
+				sync
+			</span>
+		</a>
+		
+		<a class="refresh" onclick="editmagazine()">
+			<!-- Edit Nature -->.
+			<span class="material-icons">
+				mode
+			</span>
+		</a>
+		<a class="refresh" onclick="saveFile();">
+			Save
+			<span class="material-icons">
+				save
+			</span>
+		</a>
+		<section class='nature' id="nature" style="display: flex; max-width: 999px;" >
+			
+			<a href="javascript:void(0)" class="show show-right" contenteditable="false" onclick="moveRight()">
+				<span class="material-icons">
+					chevron_right
+				</span>					
+			</a>
+			<a href="javascript:void(0)" class="show show-left" contenteditable="false" onclick="moveLeft()">
+				<span class="material-icons">
+					chevron_left
+				</span>					
+			</a>
+			<a href="javascript:void(0)" class="show show-top" contenteditable="false" onclick="moveTop()">
+				<span class="material-icons">
+					expand_less
+				</span>					
+			</a>
+			<a href="javascript:void(0)" class="show show-bottom" contenteditable="false" onclick="moveBottom()">
+				<span class="material-icons">
+					expand_more
+				</span>					
+			</a>
+			
+		 	<p style=" font-size:13px; background-color:#fff; color: grey; font-weight: 100; padding: 40px 20px; border-radius: 4px;">
+				<span style="font-weight:00;">Traditional Blog Heading </span> <br><br>
+				<span style="font-weight:400; color: blue;"> Posted on Nov 18 2021  &nbsp; By: Syamnath S<br><br></span>
+
+				My Blog <br><br>     name is syamnath and  i am a  developer
+				I love my Tradition and I proud of its varied heritage <br><br>
+
+				പ്രസിദ്ധീകരണ, ഗ്രാഫിക് ഡിസൈൻ മേഖലകളിൽ ഉപയോഗിക്കുന്ന ഒരു പദമാണ് Lorem ipsum.വികസനഘട്ടത്തിലിരിക്കുന്നതോ 
+				ഉപയോഗിക്കാത്തതോ ആയ പേജുകളിൽ ആണ് ഈ പദം 
+				ഉപയോഗിക്കുന്നത്.പേജിന്റെ രൂപകല്പന, ഫോണ്ടുകളുടെ പ്രത്യേകതകൾ എന്നിവ പ്രദർശിപ്പിക്കുക എന്നതാണ് ഇതിന്റെ ഉദ്ദേശ്യം. <br><br>
+
+				लोरेम इप्सम एक शब्द है जिसका उपयोग प्रकाशन और ग्राफिक डिजाइन के क्षेत्र में उन पृष्ठों को संदर्भित करने के लिए 
+				किया जाता है जो विकास के अधीन हैं या उपयोग में नहीं हैं। <br><br>
+				<span onclick="alert('Working')" href="javascript:void();" style="font-size:15px; text-transform: capitalize; color:darkyellow; cursor:pointer;">Read More</span>
+			
+			</p>
+			<img src="https://source.unsplash.com/300x300/?kerala" alt="Tradition" contenteditable="false" style="margin-left: 20px;border-radius: 10px;">
+		</section>
+	</section>
+	<script type="text/javascript">
+	function editmagazine() {
+		window.document.body.className = 'edit'
+		document.querySelector('.nature').setAttribute('contenteditable', 'true')
+	}
+	function moveRight() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.left.split('p')[0] + 10
+		console.info(value)
+		element.style.left = value + "px"
+	}
+	function moveLeft() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.right.split('p')[0] + 10
+		console.info(value)
+		element.style.right = value + "px"
+	}
+	function moveLeft() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.left.split('p')[0] - 10
+		console.info(value)
+		element.style.left = value + "px"
+	}
+	function moveTop() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.top.split('p')[0] - 10
+		console.info(value)
+		element.style.top = value + "px"
+	}
+	function moveBottom() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.top.split('p')[0] + 10
+		console.info(value)
+		element.style.top = value + "px"
+	}
+	function saveFile() {
+		// let code = .innerHTML
+		clone = document.getElementById("clone")
+		clone.textContent = document.querySelector('.pre').removeAttribute("hidden")
+		clone.textContent = document.querySelector('.magazine').outerHTML;
+		document.querySelector('.nature').setAttribute('contenteditable', 'false')
+		document.body.classList.remove('edit')
+	}
+	function closeCode() {
+		document.getElementById("clone").innerHTML = ""
+		clone.textContent = document.querySelector('.pre').setAttribute('hidden',"true")
+		document.body.classList.remove('edit')
+	}
+	</script>
+	<pre class="pre" hidden>
+		<a href="javascript:void(0)" class="cancelCode" contenteditable="false" onclick="closeCode()">
+			<span class="material-icons">
+				cancel 
+			</span>					
+		</a>
+		<code  id="clone">
+			
+
+		</code>
+	</pre>
+</body>
+</html>
