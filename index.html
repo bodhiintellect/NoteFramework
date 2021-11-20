@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <title>WEBSITE</title>
+  <script src="https://unpkg.com/vue"></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -15,12 +16,33 @@
 		body {
 			font-family: 'Noto Sans', sans-serif;
 		}
-		@media only screen and (max-width: 767px) {
-		body {
-		/* The file size of this background image is 93% smaller
-		to improve page load speed on mobile internet connections */
-		background-image: url(coffeeSplash.jpeg);
+		.welcome {
+			border-radius: 10px;
+			min-width: 345px;
+			height: 100%;
+			box-shadow: 1px 2px 4px #ffffff80;
+			top: 11px;
+			position: relative;
 		}
+		@media only screen and (min-width: 767px) {
+			body {
+			/* The file size of this background image is 93% smaller
+			to improve page load speed on mobile internet connections */
+			background-image: url(coffeeSplash.jpeg);
+			}
+			#nature {
+				display: flex;
+				flex-direction: column;
+			}
+			.welcome {
+				margin-top: 20px;
+				border-radius: 10px;
+				min-width: inherit;
+				height: inherit; 
+				box-shadow: 1px 2px 4px #ffffff80;
+				top: 11px;
+				position: relative;
+			}
 		}
 		.refresh {
 		    background: white;
@@ -45,12 +67,9 @@
 			/* text-align: center; */
 			color: #ffffff;
 			display: flex;
-			position: absolute;
 			border-radius: 4px;
 			text-transform: capitalize;
-			position: absolute;
 			top: 124px;
-			margin-left: 60px;
 		}
 
 		body.edit .nature {
@@ -119,7 +138,6 @@
 		}
 		
 		.cancelCode {
-			position: absolute;
 			top:2px;
 			right: 5px;
 		}
@@ -141,44 +159,26 @@
 			color : cornflowerblue;
 			background: white;
 		}
+		
 	</style>
   
 </head>
 
 <body style="background-size: cover; background-position: center center; background-attachment: fixed; background-image:url('visiting.jpeg'); background-repeat:no-repeat;">
 
-	<section class="fog magazine">
+	<section id="app" class="fog magazine">
 		<section style="display: inline-flex;">
-			<a class="refresh"  onclick="editmagazine()">
+			<!-- <a class="refresh"  onclick="editmagazine()">
 				<span class="material-icons">
 					mode
 				</span>
-			</a>
+			</a> -->
 			
 		</section>
 		
-		<section class='nature' id="nature" style="display: flex; max-width: 1080px;" >
-			
-			<a href="javascript:void(0)" class="show show-right" contenteditable="false" onclick="moveRight()">
-				<span class="material-icons">
-					chevron_right
-				</span>					
-			</a>
-			<a href="javascript:void(0)" class="show show-left" contenteditable="false" onclick="moveLeft()">
-				<span class="material-icons">
-					chevron_left
-				</span>					
-			</a>
-			<a href="javascript:void(0)" class="show show-top" contenteditable="false" onclick="moveTop()">
-				<span class="material-icons">
-					expand_less
-				</span>					
-			</a>
-			<a href="javascript:void(0)" class="show show-bottom" contenteditable="false" onclick="moveBottom()">
-				<span class="material-icons">
-					expand_more
-				</span>					
-			</a>
+		<section class='nature' id="nature" style="display: flex; " >
+				
+		
 			
 
 		 	<article class="content" style="text-align: justify; font-size:13px; background-color:#fff; color: grey; font-weight: 100; padding: 40px 20px; border-radius: 4px; box-shadow: 1px 2px 4px #54545480;">
@@ -197,18 +197,15 @@
 				 <br><br><br>
 				 <img src="visitingcard.png" alt="" style="
 					width: 100%;
-					height: auto;">
+					height: auto;
+					max-width: 600px;
+					margin: auto;
+					display: block;
+					border-radius: 4px;">
 				<span onclick="alert('Succesfully request sent')" class="button" href="javascript:void();" style="font-size:15px; text-transform: capitalize; color:darkyellow; cursor:pointer;"></span>
 	
 			</article>
-			<img src="welcome.png" alt="Tradition" contenteditable="false" style="
-				    margin-left: 20px;
-					border-radius: 10px;
-					min-width: 345px;
-					height: 100%;
-					box-shadow: 1px 2px 4px #ffffff80;
-					top: 11px;
-					position: relative;">
+			<!-- <img src="welcome.png" alt="welcome" class="welcome" contenteditable="false" style=""> -->
 		</section>
 	</section>
 	<script type="text/javascript">
@@ -263,17 +260,23 @@
 	function changecolor(color) {
 		document.getElementsByClassName('content')[0].style.color = color
 	}
-	</script>
-	<pre class="pre" hidden>
-		<a href="javascript:void(0)" class="cancelCode" contenteditable="false" onclick="closeCode()">
-			<span class="material-icons">
-				cancel 
-			</span>					
-		</a>
-		<code  id="clone">
-			
 
-		</code>
-	</pre>
+
+
+	var app = new Vue({
+      el: '#app',
+      data: {
+        notes: [
+        { id: 1, title: '[ Cheese for a Snap ]', date: '[ 12 12 20 ]', author: "[ John Doe ]",
+        Content: "[ Lorem ipsum dolor sit amet, consectetur adip ]",
+    },
+        { id: 2, title: '[ Whatever else humans are supposed to eat ]' , date: '[ 12 12 21 ]',author: "[ Jane Doe ]",
+        Content: " [ Lorem ipsum dolor sit amet, consectetur adip ]",
+    }
+        ],
+      },
+    })
+	</script>
+	
 </body>
 </html>
