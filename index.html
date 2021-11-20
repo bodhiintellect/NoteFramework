@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +30,7 @@
 			cursor: pointer;
 			display: inline-flex;
 			margin-right:10px;
-			display: none;
+			/* display: none; */
 		}
 		
 
@@ -78,15 +77,15 @@
 			text-shadow: none;
 		}
 		.show-right {
-			right: -49px;
+			right: -40px;
 			top: 1px;
 		}
 		.show-left {
-			left: -49px;
-			top: 1px;
+			right: -40px;
+			top: 43px;
 		}
 		.show-bottom {
-			left: 1px;
+			right: 44px;
 			top: -39px;
 		}
 		.show-top {
@@ -118,14 +117,7 @@
 			padding: .1rem .3rem .2rem;
 			border-radius: .2rem;
 		}
-		.pre {
-			position: absolute;
-			bottom: 0px;height: 200px;
-			background: white;
-			width: 100%;
-			left: 0px;
-			overflow: scroll;
-		}
+		
 		.cancelCode {
 			position: absolute;
 			top:2px;
@@ -156,24 +148,15 @@
 <body style="background-size: cover; background-position: center center; background-attachment: fixed; background-image:url('visiting.jpeg'); background-repeat:no-repeat;">
 
 	<section class="fog magazine">
-		<a class="refresh"  onclick="location.reload();">
+		<section style="display: inline-flex;">
+			<a class="refresh"  onclick="editmagazine()">
+				<span class="material-icons">
+					mode
+				</span>
+			</a>
 			
-			<span class="material-icons">
-				<!-- sync -->
-			</span>
-		</a>
+		</section>
 		
-		<a class="refresh"  onclick="editmagazine()">
-			<span class="material-icons">
-				mode
-			</span>
-		</a>
-		<a class="refresh"  onclick="saveFile();">
-			Save
-			<span class="material-icons">
-				save
-			</span>
-		</a>
 		<section class='nature' id="nature" style="display: flex; max-width: 1080px;" >
 			
 			<a href="javascript:void(0)" class="show show-right" contenteditable="false" onclick="moveRight()">
@@ -197,8 +180,9 @@
 				</span>					
 			</a>
 			
-`
-		 	<p style="text-align: justify; font-size:13px; background-color:#fff; color: grey; font-weight: 100; padding: 40px 20px; border-radius: 4px; box-shadow: 1px 2px 4px #54545480;">
+
+		 	<article class="content" style="text-align: justify; font-size:13px; background-color:#fff; color: grey; font-weight: 100; padding: 40px 20px; border-radius: 4px; box-shadow: 1px 2px 4px #54545480;">
+				
 				<span style="font-weight:00;">Website</span> <br><br>
 				<span style="font-weight:400; color: cornflowerblue;"> By  &nbsp; : Bodhi Intellect<br><br></span>
 				Our Story <br><br>
@@ -207,13 +191,16 @@
                 We also aim to provide workshops for children to improve their learning and interactive skills through a set of signature programs. We offer counselling services through webinars and seminars on day to day issues faced by the kids and adults. 
                 We are using technology at its best to train mind and body. Our program is designed by incorporating well structured group of sessions to develop the in depth abilities, skills interactions and activities. 
                 We also give the participants a fine set of values to follow the entire life so that they will perfectly deliver the best to themselves and around.
-                 <br><br>
+                 <br>
+                 <br>
+				 <input type="color" onchange="changecolor(this.value)" class="show" id="favcolor">
+				 <br><br><br>
 				 <img src="visitingcard.png" alt="" style="
 					width: 100%;
 					height: auto;">
 				<span onclick="alert('Succesfully request sent')" class="button" href="javascript:void();" style="font-size:15px; text-transform: capitalize; color:darkyellow; cursor:pointer;"></span>
-			
-			</p>
+	
+			</article>
 			<img src="welcome.png" alt="Tradition" contenteditable="false" style="
 				    margin-left: 20px;
 					border-radius: 10px;
@@ -265,17 +252,16 @@
 		element.style.top = value + "px"
 	}
 	function saveFile() {
-		// let code = .innerHTML
-		clone = document.getElementById("clone")
-		clone.textContent = document.querySelector('.pre').removeAttribute("hidden")
-		clone.textContent = document.querySelector('.magazine').outerHTML;
-		document.querySelector('.nature').setAttribute('contenteditable', 'false')
-		document.body.classList.remove('edit')
+		// Wish
+		
 	}
 	function closeCode() {
 		document.getElementById("clone").innerHTML = ""
 		clone.textContent = document.querySelector('.pre').setAttribute('hidden',"true")
 		document.body.classList.remove('edit')
+	}
+	function changecolor(color) {
+		document.getElementsByClassName('content')[0].style.color = color
 	}
 	</script>
 	<pre class="pre" hidden>
